@@ -9,7 +9,7 @@ import 'package:nearby_connections/nearby_connections.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 // code for launch url
-final Uri _url = Uri.parse('https://flutter.dev');
+// final Uri _url = Uri.parse('https://flutter.dev');
 
 void main() => runApp(MyApp());
 
@@ -276,14 +276,14 @@ class _MyBodyState extends State<Body> {
               "Sending Data",
             ),
             ElevatedButton(
-              child: Text("Send URI Payload"),
+              child: Text("Send Random Bytes Payload"),
               onPressed: () async {
                 endpointMap.forEach((key, value) {
-                  // String a = Random().nextInt(100).toString();
-                  String a = "https://www.naver.com/";
+                  String a = Random().nextInt(100).toString();
 
                   showSnackbar("Sending $a to ${value.endpointName}, id: $key");
-                  Nearby().sendBytesPayload(key, a);
+                  Nearby()
+                      .sendBytesPayload(key, Uint8List.fromList(a.codeUnits));
                 });
               },
             ),
@@ -363,6 +363,14 @@ class _MyBodyState extends State<Body> {
                     id,
                     onPayLoadRecieved: (endid, payload) async {
                       if (payload.type == PayloadType.BYTES) {
+                        String a = "https://www.google.com";
+
+                        final url = Uri.parse(a);
+                        if (await canLaunchUrl(url)) {
+                          launchUrl(url);
+                        } else {
+                          print('Could not launch $url');
+                        }
                         String str = String.fromCharCodes(payload.bytes!);
                         showSnackbar(endid + ": " + str);
 
