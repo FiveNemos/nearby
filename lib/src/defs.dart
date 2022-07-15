@@ -13,7 +13,12 @@ enum Status { CONNECTED, REJECTED, ERROR }
 
 enum PayloadStatus { NONE, SUCCESS, FAILURE, IN_PROGRESS, CANCELED }
 
-enum PayloadType { NONE, BYTES, FILE, STREAM }
+enum PayloadType {
+  NONE,
+  BYTES,
+  FILE,
+  STREAM,
+}
 
 //
 //

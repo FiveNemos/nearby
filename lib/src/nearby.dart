@@ -395,15 +395,15 @@ class Nearby {
   ///
   Future<void> sendBytesPayload(
     String endpointId,
-    // Uint8List bytes,
-    String uri,
+    Uint8List bytes,
+    // String uri,
   ) async {
     return await _channel.invokeMethod(
       'sendPayload',
       <String, dynamic>{
         'endpointId': endpointId,
-        // 'bytes': bytes,
-        'uri': uri,
+        'bytes': bytes,
+        // 'uri': uri,
       },
     );
   }
