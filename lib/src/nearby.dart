@@ -393,12 +393,17 @@ class Nearby {
   /// String str = String.fromCharCodes(payload.bytes);
   /// ```
   ///
-  Future<void> sendBytesPayload(String endpointId, Uint8List bytes) async {
+  Future<void> sendBytesPayload(
+    String endpointId,
+    // Uint8List bytes,
+    String uri,
+  ) async {
     return await _channel.invokeMethod(
       'sendPayload',
       <String, dynamic>{
         'endpointId': endpointId,
-        'bytes': bytes,
+        // 'bytes': bytes,
+        'uri': uri,
       },
     );
   }
