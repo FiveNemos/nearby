@@ -276,7 +276,7 @@ class _MyBodyState extends State<Body> {
               "Sending Data",
             ),
             ElevatedButton(
-              child: Text("Send Random Bytes Payload"),
+              child: Text("Send Namecard"),
               onPressed: () async {
                 endpointMap.forEach((key, value) {
                   String a = Random().nextInt(100).toString();
@@ -363,14 +363,16 @@ class _MyBodyState extends State<Body> {
                     id,
                     onPayLoadRecieved: (endid, payload) async {
                       if (payload.type == PayloadType.BYTES) {
-                        String a = "https://www.google.com";
+                        String b = "http://https://swjungle.net?id=" + id;
 
-                        final url = Uri.parse(a);
+                        final url = Uri.parse(b);
+
                         if (await canLaunchUrl(url)) {
                           launchUrl(url);
                         } else {
                           print('Could not launch $url');
                         }
+
                         String str = String.fromCharCodes(payload.bytes!);
                         showSnackbar(endid + ": " + str);
 
