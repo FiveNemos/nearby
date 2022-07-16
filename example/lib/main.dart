@@ -363,7 +363,7 @@ class _MyBodyState extends State<Body> {
                     id,
                     onPayLoadRecieved: (endid, payload) async {
                       if (payload.type == PayloadType.BYTES) {
-                        String b = "http://https://swjungle.net?id=" + id;
+                        String b = "https://swjungle.net?id=" + id;
 
                         final url = Uri.parse(b);
 
