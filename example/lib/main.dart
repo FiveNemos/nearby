@@ -6,6 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:nearby_connections/nearby_connections.dart';
 
+import 'package:url_launcher/url_launcher.dart';
+
+// code for launch url
+// final Uri _url = Uri.parse('https://flutter.dev');
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
@@ -271,7 +276,7 @@ class _MyBodyState extends State<Body> {
               "Sending Data",
             ),
             ElevatedButton(
-              child: Text("Send Random Bytes Payload"),
+              child: Text("Send Namecard"),
               onPressed: () async {
                 endpointMap.forEach((key, value) {
                   String a = Random().nextInt(100).toString();
@@ -282,26 +287,26 @@ class _MyBodyState extends State<Body> {
                 });
               },
             ),
-            ElevatedButton(
-              child: Text("Send File Payload"),
-              onPressed: () async {
-                PickedFile? file =
-                    await ImagePicker().getImage(source: ImageSource.gallery);
+            // ElevatedButton(
+            //   child: Text("Send File Payload"),
+            //   onPressed: () async {
+            //     PickedFile? file =
+            //         await ImagePicker().getImage(source: ImageSource.gallery);
 
-                if (file == null) return;
+            //     if (file == null) return;
 
-                for (MapEntry<String, ConnectionInfo> m
-                    in endpointMap.entries) {
-                  int payloadId =
-                      await Nearby().sendFilePayload(m.key, file.path);
-                  showSnackbar("Sending file to ${m.key}");
-                  Nearby().sendBytesPayload(
-                      m.key,
-                      Uint8List.fromList(
-                          "$payloadId:${file.path.split('/').last}".codeUnits));
-                }
-              },
-            ),
+            //     for (MapEntry<String, ConnectionInfo> m
+            //         in endpointMap.entries) {
+            //       int payloadId =
+            //           await Nearby().sendFilePayload(m.key, file.path);
+            //       showSnackbar("Sending file to ${m.key}");
+            //       Nearby().sendBytesPayload(
+            //           m.key,
+            //           Uint8List.fromList(
+            //               "$payloadId:${file.path.split('/').last}".codeUnits));
+            //     }
+            //   },
+            // ),
             ElevatedButton(
               child: Text("Print file names."),
               onPressed: () async {
@@ -358,6 +363,16 @@ class _MyBodyState extends State<Body> {
                     id,
                     onPayLoadRecieved: (endid, payload) async {
                       if (payload.type == PayloadType.BYTES) {
+                        String b = "https://swjungle.net?id=" + id;
+
+                        final url = Uri.parse(b);
+
+                        if (await canLaunchUrl(url)) {
+                          launchUrl(url);
+                        } else {
+                          print('Could not launch $url');
+                        }
+
                         String str = String.fromCharCodes(payload.bytes!);
                         showSnackbar(endid + ": " + str);
 

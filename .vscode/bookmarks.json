@@ -1,0 +1,29 @@
+{
+	"files": [
+		{
+			"path": "lib/src/nearby.dart",
+			"bookmarks": [
+				{
+					"line": 396,
+					"column": 0,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "example/lib/main.dart",
+			"bookmarks": [
+				{
+					"line": 278,
+					"column": 0,
+					"label": ""
+				},
+				{
+					"line": 344,
+					"column": 0,
+					"label": ""
+				}
+			]
+		}
+	]
+}
