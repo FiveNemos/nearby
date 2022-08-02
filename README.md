@@ -5,6 +5,8 @@
 An **android** flutter plugin for the [Nearby Connections API](https://developers.google.com/nearby/connections/overview)
 Currently supports Bytes and Files.
 
+팀 네모에서 활용한 nearby 패키지입니다.
+
 **Transfer Data between multiple connected devices using fully offline peer to peer networking**
 
 [![pub package](https://img.shields.io/pub/v/nearby_connections.svg)](https://pub.dartlang.org/packages/nearby_connections)
